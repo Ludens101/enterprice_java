@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5433/test_db
+    username: user
+    password: 12345
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      platform: postgres
+
+logging:
+  level:
+    org.springframework.security: DEBUG
