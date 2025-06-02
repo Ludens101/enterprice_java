@@ -1,8 +1,7 @@
-package org.example.movie_theater_2;
+package org.example.movie_theater_2.util;
 
 import org.example.movie_theater_2.model.Role;
 import org.example.movie_theater_2.model.User;
-import org.example.movie_theater_2.repository.MovieRepository;
 import org.example.movie_theater_2.repository.RoleRepository;
 import org.example.movie_theater_2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
