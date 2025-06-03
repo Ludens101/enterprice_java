@@ -3,14 +3,14 @@ spring:
     database: postgresql
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url:  jdbc:postgresql://dpg-d0vikq6mcj7s73em9pi0-a:5432/my_postgres_5if7
-    username: my_postgres_5if7_user
-    password: UwilViy6Ux3w8IaFyt0qQdeefGJJN4uP
+    url: jdbc:postgresql://localhost:5433/test_db
+    username: user
+    password: 12345
     driver-class-name: org.postgresql.Driver
   sql:
     init:
