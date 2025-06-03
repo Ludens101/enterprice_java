@@ -5,11 +5,13 @@ import org.example.movie_theater_2.repository.TicketRepository;
 import org.example.movie_theater_2.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/tickets")
 public class TicketController {
 
@@ -33,5 +35,11 @@ public class TicketController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(tickets);
+    }
+
+    @GetMapping("/view")
+    public String viewTickets(Model model) {
+        model.addAttribute("tickets", ticketService.getAllTickets());
+        return "tickets";
     }
 }
