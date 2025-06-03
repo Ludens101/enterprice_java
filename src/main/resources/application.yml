@@ -4,9 +4,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     url: jdbc:postgresql://dpg-d0vikq6mcj7s73em9pi0-a:5432/my_postgres_5if7
     username: my_postgres_5if7_user
