@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Список фільмів</title>
+</head>
+<body>
+<h1>Фільми</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Назва</th>
+    <th>Жанр</th>
+    <th>Тривалість (хв)</th>
+    <th>Вікове обмеження</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="movie : ${movies}">
+    <td th:text="${movie.title}">Назва</td>
+    <td th:text="${movie.genre}">Жанр</td>
+    <td th:text="${movie.duration}">Тривалість</td>
+    <td th:text="${movie.ageLimit}">Обмеження</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Сеанси</title>
+</head>
+<body>
+<h1>Список сеансів</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID фільму</th>
+    <th>Час</th>
+    <th>Зала</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="screening : ${screenings}">
+    <td th:text="${screening.movieId}">1</td>
+    <td th:text="${screening.dateTime}">2025-01-01 20:00</td>
+    <td th:text="${screening.hall}">A1</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

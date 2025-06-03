@@ -7,11 +7,13 @@ import org.example.movie_theater_2.repository.ScreeningRepository;
 import org.example.movie_theater_2.service.ScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/screenings")
 public class ScreeningController {
 
@@ -25,6 +27,12 @@ public class ScreeningController {
     @GetMapping
     public ResponseEntity<Iterable<Screening>> getAllScreenings() {
         return ResponseEntity.ok(screeningService.getAllScreenings());
+    }
+
+    @GetMapping("/view")
+    public String viewScreenings(Model model) {
+        model.addAttribute("screenings", screeningService.getAllScreenings());
+        return "screenings";
     }
 
     @GetMapping("/{id}")

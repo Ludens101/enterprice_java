@@ -39,7 +39,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-//                .addFilterBefore(new RequestValidationFilter(), BasicAuthenticationFilter.class)
+
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/css/**", "/js/**").permitAll()
@@ -48,6 +48,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/user/**").hasRole("USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/user/**").hasRole("USER")
+                        .requestMatchers("/view/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -59,10 +60,11 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
                 ).exceptionHandling(ex -> ex.accessDeniedPage("/access-denied"))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authenticationProvider(daoAuthenticationProvider());
 
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+//      http.addFilterBefore(new RequestValidationFilter(), BasicAuthenticationFilter.class);
 
         return http.build();
     }
@@ -80,11 +82,6 @@ public class SecurityConfig {
         return NoOpPasswordEncoder.getInstance();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(CustomUserDetailsService customUserDetailsService){
-        return customUserDetailsService;
-    }
-
     @Bean public AuthenticationManager authenticationManager(HttpSecurity httpSecurity, PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) throws Exception{
         return httpSecurity.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userDetailsService)
@@ -92,11 +89,10 @@ public class SecurityConfig {
                 .and().build();
     }
 
-
-
-
-
-
+    //    @Bean
+//    public UserDetailsService userDetailsService(CustomUserDetailsService customUserDetailsService){
+//        return customUserDetailsService;
+//    }
 
 
 

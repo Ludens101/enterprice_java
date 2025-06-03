@@ -12,7 +12,7 @@ import java.util.Date;
 public class JwtTokenProvider {
 
     private final String secret = "secret123";
-    private final long expiration = 3600;
+    private final long expiration = 3600 * 1000;
 
     public String generateToken(Authentication authentication) {
 

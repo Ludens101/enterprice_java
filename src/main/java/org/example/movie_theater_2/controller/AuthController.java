@@ -1,5 +1,6 @@
 package org.example.movie_theater_2.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.example.movie_theater_2.service.AuthService;
 import org.example.movie_theater_2.util.AuthRequest;
 import org.example.movie_theater_2.model.User;
@@ -37,5 +38,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest request) {
         return authService.login(request);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        // Якщо хочеш blacklist реалізувати, то тут логіка буде
+        // А поки токен просто видаляється на клієнті
+        return ResponseEntity.ok("Logged out successfully");
     }
 }
