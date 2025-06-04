@@ -3,6 +3,8 @@ package org.example.movie_theater_2.controller;
 import org.example.movie_theater_2.model.Ticket;
 import org.example.movie_theater_2.repository.TicketRepository;
 import org.example.movie_theater_2.service.TicketService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import java.util.List;
 public class TicketController {
 
     private final TicketService ticketService;
+    private static final Logger logger = LoggerFactory.getLogger(TicketController.class.getName());
 
     @Autowired
     public TicketController(TicketService ticketService) {
@@ -39,6 +42,7 @@ public class TicketController {
 
     @GetMapping("/view")
     public String viewTickets(Model model) {
+        logger.info("viewTickets called");
         model.addAttribute("tickets", ticketService.getAllTickets());
         return "tickets";
     }
