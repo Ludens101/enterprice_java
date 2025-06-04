@@ -1,7 +1,7 @@
 # How to log in:
 ## User account:
-login: johndoe
+login: johndoe;
 password: password
 ## Admin account:
-login: admin
+login: admin;
 password: adminpassword
