@@ -45,6 +45,7 @@ public class MovieController {
         Optional<Movie> movie = movieService.getMovieById(id);
         return movie.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+
     }
 
     @PostMapping
