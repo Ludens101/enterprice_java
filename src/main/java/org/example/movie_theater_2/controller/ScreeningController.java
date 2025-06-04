@@ -5,6 +5,8 @@ package org.example.movie_theater_2.controller;
 import org.example.movie_theater_2.model.Screening;
 import org.example.movie_theater_2.repository.ScreeningRepository;
 import org.example.movie_theater_2.service.ScreeningService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class ScreeningController {
 
     private final ScreeningService screeningService;
+    private static final Logger logger = LoggerFactory.getLogger(ScreeningController.class.getName());
 
     @Autowired
     public ScreeningController(ScreeningService screeningService) {
@@ -26,11 +29,13 @@ public class ScreeningController {
 
     @GetMapping
     public ResponseEntity<Iterable<Screening>> getAllScreenings() {
+        logger.info("getAllScreenings called");
         return ResponseEntity.ok(screeningService.getAllScreenings());
     }
 
     @GetMapping("/view")
     public String viewScreenings(Model model) {
+        logger.info("viewScreenings called");
         model.addAttribute("screenings", screeningService.getAllScreenings());
         return "screenings";
     }
